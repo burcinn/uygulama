@@ -12,7 +12,7 @@ class Product_Category extends CI_Controller {
         
         $this-> viewFolder= "product_category_v";  
 		$this->load->model("product_category_model");
-    
+ 
     }
 	public function index()
 	{
@@ -75,4 +75,81 @@ class Product_Category extends CI_Controller {
 			}
 	
 		}
+		public function delete($id)
+		{
+			$data= array(
+				"id"=>$id
+			);
+			$this->product_category_model->delete($data);
+			//100 alert sistemi entegre edilecektir..
+			redirect(base_url("Product_Category"));
+		}
+		
+		public function update_Form($id)
+		{
+			$item=$this->product_category_model->get(
+			array(
+				"id"=>$id
+			)
+			);
+			$viewData = new stdClass();
+			$viewData->item =$item;
+			$viewData->viewFolder =$this->viewFolder;
+			$viewData->subViewFolder="update";
+			$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);	
+			
+		}
+
+		public function update($id)
+		{
+			$this->load->library("form_validation");
+	
+			//kurallar
+			$this->form_validation->set_rules("title", "Ürün Katagori Adı ","required|trim");
+			//mesajlar
+			$this->form_validation->set_message(
+				array(
+				"required"=>"<b>{field}</b>  Alanı Doldurulmalıdır"
+				)
+			);
+			//calıstırılnası
+			$validate=$this->form_validation->run(); 
+	
+			if($validate){
+				//echo "Kayıt başarılı";
+				$data=array(
+					"title"=>$this->input->post("title")
+				);
+				$update=$this->product_category_model->update(
+					array(
+						"id"=>$id
+					),
+					$data
+
+				);
+				if($update)
+				{
+					redirect(base_url("Product_Category"));
+
+				}
+				else
+				{
+					echo "Kayıt başarısız";
+				}
+		
+			}
+		else{
+			$item=$this->product_category_model->get(
+				array(
+					"id"=>$id
+				)
+				);
+				$viewData = new stdClass();
+				$viewData->item =$item;
+				$viewData->subViewFolder="update";
+				$viewData->viewFolder =$this->viewFolder;
+				$viewData->formError=true;
+				$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);	
+		}
+	}
 }?>

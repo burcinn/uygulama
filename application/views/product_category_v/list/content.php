@@ -41,7 +41,7 @@
                     <th>Kategori Adı</th>
                     <th>Durumu</th>
                     <th>Oluşturma Tarihi</th>
-                    <th>Sil/Güncelle</th>
+                    <th>işlemler</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -50,7 +50,14 @@
                     <td><?php echo $item->id; ?></td>
                     <td><?php echo $item->title; ?></td>
                     <td><?php echo $item->is_active == 1 ? "Aktif" : "Pasif"; ?></td>
-                    <td><?php echo $item->created_at; ?></td>
+                    <td><?php echo dateTimeFormat($item->created_at); ?></td>
+                    <td>
+                      <a href="<?php echo base_url("Product_Category/delete/$item->id")?>"class="btn btn-danger">Sil</a>
+                      
+                      <a href="<?php echo base_url("Product_Category/update_Form/$item->id")?>"class="btn btn-info">Güncelle</a>
+                    
+                    
+                    </td>
                     <td><?php  ?></td>
                   
                   </tr>
