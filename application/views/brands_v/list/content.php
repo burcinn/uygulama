@@ -26,7 +26,7 @@
                  <h3 class="card-title">Markalar</h3>
                   </div>
                   <div class="col md-6 text-right">
-                         <a href="<?php echo base_url("branches/new_form")?>" class="btn btn-success btn-xs mb-2 "><i class="fas fa-plus"></i>Yeni Kategori Ekle</a>
+                         <a href="<?php echo base_url("brands/new_form")?>" class="btn btn-success btn-xs mb-2 "><i class="fas fa-plus"></i>Yeni Marka Ekle</a>
                   </div>
                   
                 </div>
@@ -39,7 +39,7 @@
                   <tr>
                     <th>Id</th>
                     <th>Marka Adı</th>
-                    <th>Adres</th>
+                    <th>Rank</th>
                     <th>Oluşturma Tarihi</th>
                     <th>işlemler</th>
                   </tr>
@@ -49,12 +49,12 @@
                   <tr>
                     <td><?php echo $item->id; ?></td>
                     <td><?php echo $item->title; ?></td>
-                    <td><?php echo $item->adress; ?></td>
+                    <td><?php echo $item->rank; ?></td>
                     <td><?php echo dateTimeFormat($item->created_at); ?></td>
                     <td>
-                      <a href="<?php echo base_url("branches/delete/$item->id")?>"class="btn btn-danger">Sil</a>
+                      <a href="<?php echo base_url("brands/delete/$item->id")?>"class="btn btn-danger">Sil</a>
                       
-                      <a href="<?php echo base_url("branches/update_Form/$item->id")?>"class="btn btn-info">Güncelle</a>
+                      <a href="<?php echo base_url("brands/update_Form/$item->id")?>"class="btn btn-info">Güncelle</a>
                     
                     
                     </td>

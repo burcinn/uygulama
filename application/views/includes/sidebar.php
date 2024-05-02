@@ -54,10 +54,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="<?php echo base_url("branches")?>" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="<?php echo base_url("brands")?>" class="nav-link">
+              <i class="nav-icon fas fa-tags"></i>
               <p>
                 Markalar
+                <span class="right badge badge-danger"></span>
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="<?php echo base_url("users")?>" class="nav-link">
+              <i class="nav-icon fas fa fa-users"></i>
+              <p>
+                Kullanıcılar
                 <span class="right badge badge-danger"></span>
               </p>
             </a>

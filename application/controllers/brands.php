@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Branches extends CI_Controller {
+class brands extends CI_Controller {
 
 
 	public $viewFolder = "";
@@ -10,14 +10,14 @@ class Branches extends CI_Controller {
     {
         parent::__construct();
         
-        $this-> viewFolder= "branches_v";  
-		$this->load->model("branches_model");
+        $this-> viewFolder= "brands_v";  
+		$this->load->model("brands_model");
  
     }
 	public function index()
 	{
-		$this->load->model('branches_model');
-		$items = $this->branches_model->getAll();
+		$this->load->model('brands_model');
+		$items = $this->brands_model->getAll();
 
 		
 
@@ -43,7 +43,7 @@ class Branches extends CI_Controller {
 	
 			//kurallar
 			$this->form_validation->set_rules("title", "Marka adı ","required|trim");
-			$this->form_validation->set_rules("adress", "Adres ","required|trim");
+		
 			//mesajlar
 			$this->form_validation->set_message(
 				array(
@@ -56,12 +56,12 @@ class Branches extends CI_Controller {
 			if($validate){
 				//echo "Kayıt başarılı";
 				$data=array(
-					"title"=>$this->input->post("title"),
-					"adress"=>$this->input->post("adress")
+					"title"=>$this->input->post("title")
+					
 				);
-				$insert=$this->branches_model->add($data);
+				$insert=$this->brands_model->add($data);
 				if($insert){
-					redirect(base_url("branches"));
+					redirect(base_url("brands"));
 				}
 				else{
 					echo "Kayıt sırasında hata";
@@ -82,14 +82,14 @@ class Branches extends CI_Controller {
 			$data= array(
 				"id"=>$id
 			);
-			$this->branches_model->delete($data);
+			$this->brands_model->delete($data);
 			//100 alert sistemi entegre edilecektir..
-			redirect(base_url("branches"));
+			redirect(base_url("brands"));
 		}
 		
 		public function update_Form($id)
 		{
-			$item=$this->branches_model->get(
+			$item=$this->brands_model->get(
 			array(
 				"id"=>$id
 			)
@@ -108,7 +108,7 @@ class Branches extends CI_Controller {
 	
 			//kurallar
 			$this->form_validation->set_rules("title", "Marka adı ","required|trim");
-			$this->form_validation->set_rules("adress", "Adres ","required|trim");
+			
 			//mesajlar
 			$this->form_validation->set_message(
 				array(
@@ -121,10 +121,10 @@ class Branches extends CI_Controller {
 			if($validate){
 				//echo "Kayıt başarılı";
 				$data=array(
-					"title"=>$this->input->post("title"),
-					"adress"=>$this->input->post("adress")
+					"title"=>$this->input->post("title")
+					
 				);
-				$update=$this->branches_model->update(
+				$update=$this->brands_model->update(
 					array(
 						"id"=>$id
 					),
@@ -133,7 +133,7 @@ class Branches extends CI_Controller {
 				);
 				if($update)
 				{
-					redirect(base_url("branches"));
+					redirect(base_url("brands"));
 
 				}
 				else
@@ -143,7 +143,7 @@ class Branches extends CI_Controller {
 		
 			}
 		else{
-			$item=$this->branches_model->get(
+			$item=$this->brands_model->get(
 				array(
 					"id"=>$id
 				)
@@ -153,7 +153,8 @@ class Branches extends CI_Controller {
 				$viewData->subViewFolder="update";
 				$viewData->viewFolder =$this->viewFolder;
 				$viewData->formError=true;
-				$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);	
+				$this->load->view("{$viewData->viewFolder}/{$viewData->subViewFolder}/index", $viewData);
+				// 7 fonksiyon olmalı kesin bunlar	
 		}
 	}
 }
