@@ -28,14 +28,15 @@ class users_model extends CI_Model
     {
         return $this->db->where($where)->get("users")->row();
     }
-// result toplum row dizzi olarak gonderiri
-
-  public function update($where=array(),$data=array())
- {
-  return $this->db->where($where)->update("users",$data);
- }
 
 
+    public function get_user($email, $password)
+    {
+        $this->db->where('email', $email);
+        $this->db->where('password', $password); 
+        $query = $this->db->get('users'); 
+        return $query->row();
+    }
 }
 
 ?>

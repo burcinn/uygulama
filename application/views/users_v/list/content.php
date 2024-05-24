@@ -26,7 +26,7 @@
                  <h3 class="card-title">kullanıcılar</h3>
                   </div>
                   <div class="col md-6 text-right">
-                         <a href="<?php echo base_url("users/new_form")?>" class="btn btn-success btn-xs mb-2 "><i class="fas fa-plus"></i>Yeni Marka Ekle</a>
+                         <a href="<?php echo base_url("users/new_form")?>" class="btn btn-success btn-xs mb-2 "><i class="fas fa-plus"></i>Yeni Ekle</a>
                   </div>
                   
                 </div>
@@ -39,8 +39,8 @@
                   <tr>
                     <th>Id</th>
                     <th>Email</th>
-                    <th>Name</th>
-                    <th>Surname</th>
+                    <th>İsim</th>
+                    <th>Soyad</th>
                     <th>Oluşturma Tarihi</th>
                     <th>işlemler</th>
                   </tr>

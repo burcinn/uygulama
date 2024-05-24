@@ -46,7 +46,7 @@ class users extends CI_Controller {
             $this->form_validation->set_rules("name", "isim ","required|trim");
             $this->form_validation->set_rules("surname", "soyad ","required|trim");
             $this->form_validation->set_rules("password", "şifre ","required|trim");
-            $this->form_validation->set_rules("re-pass", "şifre tekrarı ","required|trim|matches[pass]");
+            $this->form_validation->set_rules("re-pass", "şifre tekrarı ","required|trim|matches[password]");
 		
 			//mesajlar
 			$this->form_validation->set_message(
@@ -66,7 +66,7 @@ class users extends CI_Controller {
 					"email"=>$this->input->post("email"),
                     "name"=>$this->input->post("name"),
                     "surname"=>$this->input->post("surname"),
-                    "password"=>md5($this->input->post("pass")),
+                    "password"=>($this->input->post("password")),
                     "is_active"=>1
 					
 				);
@@ -118,22 +118,30 @@ class users extends CI_Controller {
 			$this->load->library("form_validation");
 	
 			//kurallar
-			$this->form_validation->set_rules("title", "Marka adı ","required|trim");
-			
+			$this->form_validation->set_rules("email", "Kullanıcı adı girin ","required|trim|valid_email");
+            $this->form_validation->set_rules("name", "isim ","required|trim");
+            $this->form_validation->set_rules("surname", "soyad ","required|trim");
+            $this->form_validation->set_rules("password", "şifre ","required|trim");
+		
 			//mesajlar
 			$this->form_validation->set_message(
 				array(
-				"required"=>"<b>{field}</b>  Alanı Doldurulmalıdır"
+				"required"=>"<b>{field}</b>  Alanı Doldurulmalıdır",
+                "valid_email"=>"<b>{field}</b>  Geçerli bir e-posta değildir.",
+                "matches"=>"Şifre birbiriyle uyuşmuyor."
 				)
 			);
 			//calıstırılnası
 			$validate=$this->form_validation->run(); 
 	
 			if($validate){
-				//echo "Kayıt başarılı";
 				$data=array(
-					"title"=>$this->input->post("title")
-					
+					"email"=>$this->input->post("email"),
+                    "name"=>$this->input->post("name"),
+                    "surname"=>$this->input->post("surname"),
+                    "password"=>$this->input->post("password"),
+                    "is_active"=>1
+				
 				);
 				$update=$this->users_model->update(
 					array(
